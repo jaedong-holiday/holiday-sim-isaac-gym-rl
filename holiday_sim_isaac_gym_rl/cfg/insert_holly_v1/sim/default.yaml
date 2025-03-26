@@ -1,0 +1,221 @@
+use_viewer: True
+record: False
+
+device:
+  sim_device: "cuda:0"
+  rl_device: "cuda:0"
+  graphics_device_id: 0
+
+robot_description:
+  robot: "fr3_gripper"
+  type: "insert_holly"
+
+directory:
+  robot_path: "robot/franka_description"
+  objects_path: "objects"
+
+sim:
+  fps: 60
+  substeps: 1
+  add_damping: True
+  contact_offset: 0.002
+  rest_offset: 0.0
+  control_hz: 60
+  simulation_hz: 120
+
+env: 
+  num_envs: 1
+  env_spacing: 1.0
+  
+table:
+  base_pos: [0.13, 0.0, 0.075]
+  base_rot: [0, 0, 0, 1]
+  table_depth: 0.5
+  table_width: 0.5
+  table_height: 0.15
+  table_friction: 0.3
+
+robot:
+  name: "franka"
+  hand_type: "Gripper"
+  base_pos:  [-0.37, 0.0, 0.0]  
+  base_rot:  [0, 0, 0, 1]
+  home_qpos: [0, -0.785398, 0, -2.356194, 0, 1.570796, 0.785398, 0.04, 0.04]
+
+objects:
+  object_type: 'holi'    
+  nist:
+    type: ['round_peg_hole_16mm', 
+          'round_peg_hole_12mm', 
+          'round_peg_hole_8mm',
+          'rectangular_peg_hole_16mm', 
+          'rectangular_peg_hole_12mm', 
+          'rectangular_peg_hole_8mm']
+    
+    # grid center -> robot_base + [0.5, 0, table height]
+    board_grid_spacing: 0.025
+    board_grid_row: 2
+    subassembly_grid_placement_gap: 1 # size as num grid 
+    subassembly_grid_size: 1 # size as num grid 
+
+    round_peg_hole_4mm:
+      round_peg_4mm:
+          urdf_path: 'industreal_round_peg_4mm'
+          diameter: 0.003988
+          length: 0.050
+          density: 8000.0 
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.004
+      round_hole_4mm:
+          urdf_path: 'industreal_round_hole_4mm'
+          diameter: 0.0041
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    round_peg_hole_8mm:
+      round_peg_8mm:
+          urdf_path: 'industreal_round_peg_8mm'
+          diameter: 0.007986
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.008
+      round_hole_8mm:
+          urdf_path: 'industreal_round_hole_8mm'
+          diameter: 0.0081
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    round_peg_hole_12mm:
+      round_peg_12mm:
+          urdf_path: 'industreal_round_peg_12mm'
+          diameter: 0.011983
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.012
+      round_hole_12mm:
+          urdf_path: 'industreal_round_hole_12mm'
+          diameter: 0.0122
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    round_peg_hole_16mm:
+      round_peg_16mm:
+          urdf_path: 'industreal_round_peg_16mm'
+          diameter: 0.015983
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.016
+      round_hole_16mm:
+          urdf_path: 'industreal_round_hole_16mm'
+          diameter: 0.0165
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    rectangular_peg_hole_4mm:
+      rectangular_peg_4mm:
+          urdf_path: 'industreal_rectangular_peg_4mm'
+          width: 0.00397
+          depth: 0.00397
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.004
+      rectangular_hole_4mm:
+          urdf_path: 'industreal_rectangular_hole_4mm'
+          width: 0.00411
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    rectangular_peg_hole_8mm:
+      rectangular_peg_8mm:
+          urdf_path: 'industreal_rectangular_peg_8mm'
+          width: 0.007964
+          depth: 0.006910
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.008
+      rectangular_hole_8mm:
+          urdf_path: 'industreal_rectangular_hole_8mm'
+          width: 0.0081444
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    rectangular_peg_hole_12mm:
+      rectangular_peg_12mm:
+          urdf_path: 'industreal_rectangular_peg_12mm'
+          width: 0.011957
+          depth: 0.007910
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.012
+      rectangular_hole_12mm:
+          urdf_path: 'industreal_rectangular_hole_12mm'
+          width: 0.0121778
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+
+    rectangular_peg_hole_16mm:
+      rectangular_peg_16mm:
+          urdf_path: 'industreal_rectangular_peg_16mm'
+          width: 0.015957
+          depth: 0.009910
+          length: 0.050
+          density: 8000.0
+          friction: 1.0
+          grasp_offset: 0.04
+          plug_width: 0.016
+      rectangular_hole_16mm:
+          urdf_path: 'industreal_rectangular_hole_16mm'
+          width: 0.0162182
+          height: 0.028        
+          depth: 0.023
+          density: 8000.0
+          friction: 0.5
+  holi:
+    type: ['holi_top_bottom_8mm']
+
+    holi_top_bottom_8mm:      
+      holi_top:
+          base_pos: [0.13, 0.0, 0.25]
+          base_rot: [0, 0, 0, 1]
+          urdf_path: 'holi_top'          
+          grasp_offset: 0.03
+          height: 0.04
+      holi_bottom_8mm:
+          base_pos: [0.13, 0.0, 0.15]
+          base_rot: [0, 0, 0, 1]
+          urdf_path: 'holi_bottom_8mm'
+          friction: 1.0
+          height: 0.04
+
+policy:
+  checkpoint: "holiday_sim_isaac_gym/atomic_skills/atomic_insert/nn/IndustRealTaskPegsInsert.pth"
+  action_type: "Static"
+  compliance_adjust: False
+  action_num: 6

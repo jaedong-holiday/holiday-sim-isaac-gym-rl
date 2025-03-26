@@ -1,0 +1,12 @@
+  mode:
+    robot: "EFFORT"
+    gripper: "EFFORT"
+  controller: "task_space_impedance"  
+  gain:
+    robot:
+      p_gain: [300, 300, 300, 50, 50, 50]
+      d_gain: [34, 34, 34, 1.4, 1.4, 1.4]
+    gripper:
+      p_gain: [5, 5]
+      d_gain: [0.5, 0.5]
+  motion_ctrl_axes: [1, 1, 1, 1, 1, 1]  
