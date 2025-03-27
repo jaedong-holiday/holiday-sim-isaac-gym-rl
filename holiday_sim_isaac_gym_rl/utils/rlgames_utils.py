@@ -51,22 +51,22 @@ def multi_gpu_get_rank(multi_gpu):
     return 0
 
 
-# def get_rlgames_env_creator(
-#         # used to create the vec task
-#         seed: int,
-#         task_config: dict,
-#         task_name: str,
-#         sim_device: str,
-#         rl_device: str,
-#         graphics_device_id: int,
-#         headless: bool,
-#         # used to handle multi-gpu case
-#         multi_gpu: bool = False,
-#         post_create_hook: Callable = None,
-#         virtual_screen_capture: bool = False,
-#         force_render: bool = False,
-# ):
-def get_rlgames_env_creator():
+def get_rlgames_env_creator(
+        # used to create the vec task
+        seed: int,
+        task_config: dict,
+        task_name: str,
+        sim_device: str,
+        rl_device: str,
+        graphics_device_id: int,
+        headless: bool,
+        # used to handle multi-gpu case
+        multi_gpu: bool = False,
+        post_create_hook: Callable = None,
+        virtual_screen_capture: bool = False,
+        force_render: bool = False,
+):
+# def get_rlgames_env_creator():
     """Parses the configuration parameters for the environment task and creates a VecTask
 
     Args:
@@ -98,40 +98,39 @@ def get_rlgames_env_creator():
         """
         Creates the task from configurations and wraps it using RL-games wrappers if required.
         """
-        # if multi_gpu:
+        if multi_gpu:
 
-        #     local_rank = int(os.getenv("LOCAL_RANK", "0"))
-        #     global_rank = int(os.getenv("RANK", "0"))
+            local_rank = int(os.getenv("LOCAL_RANK", "0"))
+            global_rank = int(os.getenv("RANK", "0"))
 
-        #     # local rank of the GPU in a node
-        #     local_rank = int(os.getenv("LOCAL_RANK", "0"))
-        #     # global rank of the GPU
-        #     global_rank = int(os.getenv("RANK", "0"))
-        #     # total number of GPUs across all nodes
-        #     world_size = int(os.getenv("WORLD_SIZE", "1"))
+            # local rank of the GPU in a node
+            local_rank = int(os.getenv("LOCAL_RANK", "0"))
+            # global rank of the GPU
+            global_rank = int(os.getenv("RANK", "0"))
+            # total number of GPUs across all nodes
+            world_size = int(os.getenv("WORLD_SIZE", "1"))
 
-        #     print(f"global_rank = {global_rank} local_rank = {local_rank} world_size = {world_size}")
+            print(f"global_rank = {global_rank} local_rank = {local_rank} world_size = {world_size}")
 
-        #     _sim_device = f'cuda:{local_rank}'
-        #     _rl_device = f'cuda:{local_rank}'
+            _sim_device = f'cuda:{local_rank}'
+            _rl_device = f'cuda:{local_rank}'
 
-        #     task_config['rank'] = local_rank
-        #     task_config['rl_device'] = _rl_device
-        # else:
-        #     _sim_device = sim_device
-        #     _rl_device = rl_device
+            task_config['rank'] = local_rank
+            task_config['rl_device'] = _rl_device
+        else:
+            _sim_device = sim_device
+            _rl_device = rl_device
 
-        args = parse_args()
+        # args = parse_args()
 
-        controller = holiday_sim_isaac_gym.make_controller(
-            args.env, args.config, device="cuda"
-        )
-        sim, cfg = holiday_sim_isaac_gym.make_simulation(args.env, args.config, device="cuda")
-        env = sim
+        sim = holiday_sim_isaac_gym.make_simulation("insert_holly_v1", "default")
+        controller = holiday_sim_isaac_gym.make_controller("insert_holly_v1", "default", sim.get_controller_param())        
+        sim.set_controller(controller)
+        env = sim    
+        # controller = holiday_sim_isaac_gym.make_controller(
+        #     "insert_holly_v1", "default_controller_v1", sim.get_controller_param(), device="cuda"
+        # )       
 
-        # print("isaacgym_task_map : ", isaacgym_task_map)
-        # print("======================================")
-        
         # create native task and pass custom config
         # env = isaacgym_task_map[task_name](
         #     cfg=task_config,
@@ -146,9 +145,8 @@ def get_rlgames_env_creator():
         # if post_create_hook is not None:
         #     post_create_hook()
 
-        return env, cfg
+        return env
     
-    print("=============return")
     return create_rlgpu_env
 
 

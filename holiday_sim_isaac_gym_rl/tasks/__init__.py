@@ -62,13 +62,6 @@ def resolve_insert_holly_v1(cfg, *args, **kwargs):
     if subtask_name not in subtask_map:
         raise ValueError(f"Unknown subtask={subtask_name} in {subtask_map}")
 
-    print("cfg ===============================")
-    print(cfg)
-    print("args ==============================")
-    print(args)
-    print("kwargs ============================")
-    print(kwargs)
-
     return subtask_map[subtask_name](cfg, *args, **kwargs)
 
 

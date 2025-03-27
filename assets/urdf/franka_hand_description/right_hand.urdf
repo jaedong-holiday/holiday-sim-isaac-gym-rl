@@ -1,0 +1,750 @@
+<?xml version="1.0" ?>
+<robot name="right_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <joint name="HAND1J" type="fixed">
+    <!--  <origin xyz="0.123206133630086 -0.0496010386911909 0.00266719553241919" rpy="3.11403590687517 -1.57049644148007 1.57079632703857"
+      /> -->
+    <origin xyz="0.004 -0.125 0.107" rpy="3.141592 0.0 0.0" />
+    <parent link="panda_link7" />
+    <child link="HAND1" />
+    <axis xyz="0 0 1"/>
+    <!-- <axis xyz="0.000299885310328677 -0.0275532577170168 0.999620291939885" /> -->
+  </joint>
+
+  <link name="HAND1">
+    <inertial>
+      <origin xyz="-0.00944207122503486 -0.132134169193478 -0.0565984897435919" rpy="0 0 0"/>      
+      <mass value="0.217106528997262" />
+      <inertia
+        ixx="0.000145772870487374"
+        ixy="-6.12360384839344E-07"
+        ixz="1.53496515567793E-05"
+        iyy="0.000252922412542795"
+        iyz="1.37844709878627E-07"
+        izz="0.00012214719798077" />
+    </inertial>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/HANDR1.obj" />
+      </geometry>
+    </collision>
+    <visual>     
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/HANDR1.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>    
+  </link>
+  
+  <joint name="THUMB1J" type="revolute">
+     <origin xyz="0.00621334040795378 -0.122328984014423 -0.0335202968132514" rpy="0.247924687844942 0.0686816067402885 -0.442618933410627" />
+     <parent link="HAND1" />
+    <child link="THUMB1" />
+    <axis xyz="0.499740269148067 0.0238659525499447 -0.865846452727446" />
+    <limit effort="87" lower="-0.5236" upper="0.5236" velocity="1.57" />
+  </joint>  
+
+  <link name="THUMB1">
+    <inertial>
+      <origin xyz="0.0187420851351881 0.00688961544395322 -0.000712752140737183" rpy="0 0 0" />
+      <mass value="0.00983237332003834" />
+      <inertia
+        ixx="9.18108569623387E-07"
+        ixy="-2.4021989667901E-07"
+        ixz="3.11708344260631E-08"
+        iyy="9.28638786921522E-07"
+        iyz="-1.59558800394124E-07"
+        izz="1.04638190991989E-06" />
+    </inertial>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/THUMBR1.obj" />
+      </geometry>
+    </collision>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/THUMBR1.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>    
+  </link>
+  
+  <joint name="THUMB2J" type="revolute">
+     <origin xyz="0.0324314149877292 0.00967433071019672 -0.0071557311919429" rpy="-2.78680527593993 0.748281478831545 2.05827158249576" />
+     <parent link="THUMB1" />
+    <child link="THUMB2" />
+    <axis xyz="1 0 0" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="THUMB2">
+    <inertial>
+      <origin xyz="-0.00472323162010391 -0.00389167659169379 -0.00105639423867759" rpy="0 0 0" />
+      <mass value="0.00395049843280144" />
+      <inertia
+        ixx="3.82201782153696E-07"
+        ixy="8.47892932445636E-09"
+        ixz="3.11205662548097E-08"
+        iyy="3.6072057548207E-07"
+        iyz="1.82856185977721E-08"
+        izz="4.04511254733069E-07" />
+    </inertial>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/THUMBR2.obj" />
+      </geometry>
+    </collision>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/THUMBR2.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>    
+  </link>
+  
+  <joint name="THUMB3J" type="revolute">
+     <origin xyz="0.00327852443644183 0.00699999999986699 0" rpy="-2.29005286554533 0.112712577984922 2.2175794328552" />
+     <parent link="THUMB2" />
+    <child link="THUMB3" />
+    <axis xyz="0.112474077074287 0.747522175464064 0.654645078783733" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="THUMB3">
+    <inertial>
+      <origin xyz="0.0141624335536208 0.00320216205286483 -0.00354037081543557" rpy="0 0 0" />
+      <mass value="0.00956355378123469" />
+      <inertia
+        ixx="7.21708035477288E-07"
+        ixy="-2.60501308259613E-07"
+        ixz="4.00486586312433E-07"
+        iyy="1.18860311266717E-06"
+        iyz="2.48131106020918E-07"
+        izz="1.00622252036016E-06" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/THUMBR3.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/THUMBR3.obj" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="THUMB4J" type="revolute">
+     <origin xyz="0.0262155765581733 0.0161318613643788 -0.0115058913130295" rpy="-0.00483147051195364 -0.30623127774148 -0.267379620048197" />
+     <parent link="THUMB3" />
+    <child link="THUMB4" />
+    <axis xyz="0.112474077074298 0.747522175464069 0.654645078783726" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+  
+  <link name="THUMB4">
+    <inertial>
+      <origin xyz="0.00947132311489918 0.000682181511018579 -0.010719429303096" rpy="0 0 0" />
+      <mass value="0.00647930525102177" />
+      <inertia
+        ixx="3.02255270490843E-07"
+        ixy="-9.82850280218503E-08"
+        ixz="1.38365353242557E-07"
+        iyy="3.7596427932635E-07"
+        iyz="9.98733839071995E-08"
+        izz="3.08967806191018E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/THUMBR4.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/THUMBR4.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="INDEX1J" type="revolute">
+     <origin xyz="0.0243836885329525 -0.118519033579236 -0.0991569586560392" rpy="-1.44892316447011 0.0275567464709469 -1.57079632679482" />
+     <parent link="HAND1" />
+    <child link="INDEX1" />
+    <axis xyz="1 0 0" />
+    <limit effort="87" lower="-0.2618" upper="0.2618" velocity="1.57" />
+  </joint>
+
+  <link name="INDEX1">
+    <inertial>
+      <origin xyz="0.00927216467786701 -0.00736255438369127 0.00263442748506684" rpy="0 0 0" />
+      <mass value="0.00539210728970961" />
+      <inertia
+        ixx="6.96332514739936E-07"
+        ixy="-1.19951092278294E-07"
+        ixz="9.67354771017218E-09"
+        iyy="3.98913701287038E-07"
+        iyz="4.02851523151758E-08"
+        izz="7.20038202340638E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/INDEXR1.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/INDEXR1.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="INDEX2J" type="revolute">
+     <origin xyz="0.0039999999998841 0.00600000000001322 -0.00483963827019299" rpy="-0.0275567464697796 -1.51554062663406 1.30952660485574" />
+     <parent link="INDEX1" />
+    <child link="INDEX2" />
+    <axis xyz="0.998473792176333 -0.00152169999888833 0.0552066188615644" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="INDEX2">
+    <inertial>
+      <origin xyz="0.00928702364645922 0.00204516333539506 -0.0191298797061434" rpy="0 0 0" />
+      <mass value="0.0090779018555249" />
+      <inertia
+        ixx="1.78060880748242E-06"
+        ixy="-1.64949482486689E-08"
+        ixz="6.1576601061E-08"
+        iyy="1.52472219242911E-06"
+        iyz="4.79277084010678E-07"
+        izz="4.2393661994771E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/INDEXR2.dae" />
+      </geometry>
+      <material>
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/INDEXR2.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="INDEX3J" type="revolute">
+     <origin xyz="0.00728650450731841 0.0130928317322465 -0.043759647026469" rpy="-0.143223649730255 -0.000348596102990445 -0.00790757275870851" />
+     <parent link="INDEX2" />
+    <child link="INDEX3" />
+    <axis xyz="0.998473792176333 -0.00152169999888655 0.0552066188615676" />
+    <limit effort="87" lower="0.0" upper="2.0944" velocity="1.57" />
+  </joint>
+
+  <link name="INDEX3">
+    <inertial>
+      <origin xyz="0.00200979558861744 -0.000310672280613988 -0.0102865548645768" rpy="0 0 0" />
+      <mass value="0.00559373124369676" />
+      <inertia
+        ixx="6.44562473188833E-07"
+        ixy="-7.68945200961214E-09"
+        ixz="2.25815629309012E-08"
+        iyy="4.60816674633764E-07"
+        iyz="1.93962033914875E-07"
+        izz="2.67104886594353E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/INDEXR3.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/INDEXR3.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="INDEX4J" type="revolute">
+     <origin xyz="0.00126915130516614 0.0104723531609593 -0.0226653716986231" rpy="-0.296160838572226 -0.00196246584718096 -0.0162035577982576" />
+     <parent link="INDEX3" />
+    <child link="INDEX4" />
+    <axis xyz="0.998473792176334 -0.00152169999887655 0.0552066188615475" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+  
+  <link name="INDEX4">
+    <inertial>
+      <origin xyz="0.0028691035617554 0.00518814071108809 -0.0113084018799451" rpy="0 0 0" />
+      <mass value="0.00508790312866893" />
+      <inertia
+        ixx="3.21881257857105E-07"
+        ixy="-5.57062569863654E-09"
+        ixz="9.52598210949389E-09"
+        iyy="2.32603775314845E-07"
+        iyz="1.10457269700153E-07"
+        izz="1.35607894060306E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/INDEXR4.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/INDEXR4.obj" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="MIDDLE1J" type="revolute">
+     <origin xyz="-0.00269713137883915 -0.118409643161412 -0.103125595782582" rpy="-1.57109621210972 0.0275567464709469 -1.57079632679482" />
+     <parent link="HAND1" />
+    <child link="MIDDLE1" />
+    <axis xyz="1 0 0" />
+    <limit effort="87" lower="-0.2618" upper="0.2618" velocity="1.57" />
+  </joint>
+  
+  <link name="MIDDLE1">
+    <inertial>
+      <origin xyz="0.00927218960667975 -0.00736255951329223 0.00263444849552316" rpy="0 0 0" />
+      <mass value="0.0053921042997982" />
+      <inertia
+        ixx="6.96332770882621E-07"
+        ixy="-1.19950927731283E-07"
+        ixz="9.67413311524523E-09"
+        iyy="3.98913906662263E-07"
+        iyz="4.02843489616962E-08"
+        izz="7.20037694641143E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/MIDDLER1.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/MIDDLER1.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="MIDDLE2J" type="revolute">
+     <origin xyz="0.00399999999998568 0.00599999999997824 -0.010022996553767" rpy="-0.0275567464696519 -1.51554062663406 1.30952660485561" />
+     <parent link="MIDDLE1" />
+    <child link="MIDDLE2" />
+    <axis xyz="0.998473792176333 -0.00152169999887578 0.0552066188615738" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="MIDDLE2">
+    <inertial>
+      <origin xyz="0.0144624671115485 0.0020372802793287 -0.0188437215195482" rpy="0 0 0" />
+      <mass value="0.00907789657971918" />
+      <inertia
+        ixx="1.7806078906079E-06"
+        ixy="-1.64951026675618E-08"
+        ixz="6.15766353143045E-08"
+        iyy="1.52472153349058E-06"
+        iyz="4.79276941607879E-07"
+        izz="4.2393631456902E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/MIDDLER2.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/MIDDLER2.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="MIDDLE3J" type="revolute">
+     <origin xyz="0.00314285513658233 0.0130991467616474 -0.0439887535621415" rpy="-0.143223649730269 -0.000348596103006336 -0.00790757275871161" />
+     <parent link="MIDDLE2" />
+    <child link="MIDDLE3" />
+    <axis xyz="0.998473792176333 -0.00152169999887896 0.0552066188615596" />
+    <limit effort="87" lower="0.0" upper="2.0944" velocity="1.57" />
+  </joint>
+
+  <link name="MIDDLE3">
+    <inertial>
+      <origin xyz="0.0113288920213057 -0.000324882104943636 -0.00977129344200395" rpy="0 0 0" />
+      <mass value="0.00559373363297452" />
+      <inertia
+        ixx="6.44561795006018E-07"
+        ixy="-7.6894820148007E-09"
+        ixz="2.258144103613E-08"
+        iyy="4.60816071866007E-07"
+        iyz="1.93962398291335E-07"
+        izz="2.67104870686469E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/MIDDLER3.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/MIDDLER3.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="MIDDLE4J" type="revolute">
+     <origin xyz="0.00320931061366655 0.0104693963077812 -0.0225580983417058" rpy="-0.296160838572289 -0.00196246584718817 -0.0162035577982599" />
+     <parent link="MIDDLE3" />
+    <child link="MIDDLE4" />
+    <axis xyz="0.998473792176334 -0.00152169999887806 0.0552066188615491" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="MIDDLE4">
+    <inertial>
+      <origin xyz="0.0100483486014899 0.00517719920828608 -0.0109114569257016" rpy="0 0 0" />
+      <mass value="0.00508790400017489" />
+      <inertia
+        ixx="3.21881486702424E-07"
+        ixy="-5.5706481717494E-09"
+        ixz="9.52611194165713E-09"
+        iyy="2.32603880025707E-07"
+        iyz="1.10457297293756E-07"
+        izz="1.35607807158186E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/MIDDLER4.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/MIDDLER4.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="RING1J" type="revolute">
+     <origin xyz="-0.0283744257417027 -0.118624171901002 -0.0953425858233096" rpy="-1.69326925974932 0.0275567464709636 -1.57079632679482" />
+     <parent link="HAND1" />
+    <child link="RING1" />
+    <axis xyz="1 0 0" />
+    <limit effort="87" lower="-0.2618" upper="0.2618" velocity="1.57" />
+  </joint>
+
+  <link name="RING1">
+    <inertial>
+      <origin xyz="0.00927219466813378 -0.00736255893218984 0.0026344525780385" rpy="0 0 0" />
+      <mass value="0.00539210488366946" />
+      <inertia
+        ixx="6.96333040072895E-07"
+        ixy="-1.19950877896622E-07"
+        ixz="9.67424901850695E-09"
+        iyy="3.98913851630891E-07"
+        iyz="4.02840724690976E-08"
+        izz="7.20037824335811E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/RINGR1.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/RINGR1.obj" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="RING2J" type="revolute">
+     <origin xyz="0.00399999999999201 0.00600000000000378 0" rpy="-0.0275567464696718 -1.51554062663406 1.30952660485561" />
+     <parent link="RING1" />
+    <child link="RING2" />
+    <axis xyz="0.998473792176333 -0.0015216999988882 0.0552066188615665" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+  
+  <link name="RING2">
+    <inertial>
+      <origin xyz="0.00445477093874799 0.00205252799485744 -0.019397059780355" rpy="0 0 0" />
+      <mass value="0.00907790219906855" />
+      <inertia
+        ixx="1.78060922272979E-06"
+        ixy="-1.64948844171482E-08"
+        ixz="6.15766262701701E-08"
+        iyy="1.52472263844879E-06"
+        iyz="4.79277184134834E-07"
+        izz="4.23936751612349E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/RINGR2.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/RINGR2.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="RING3J" type="revolute">
+     <origin xyz="0.00245425253091612 0.0131001962098944 -0.0440268270918565" rpy="-0.143223649730268 -0.000348596103001839 -0.00790757275870675" />
+     <parent link="RING2" />
+    <child link="RING3" />
+    <axis xyz="0.998473792176333 -0.00152169999888348 0.0552066188615599" />
+    <limit effort="87" lower="0.0" upper="2.0944" velocity="1.57" />
+  </joint>
+
+  <link name="RING3">
+    <inertial>
+      <origin xyz="0.00200979525921793 -0.000310675227575108 -0.0102865594172525" rpy="0 0 0" />
+      <mass value="0.00559373085781695" />
+      <inertia
+        ixx="6.44561634064499E-07"
+        ixy="-7.68957607025156E-09"
+        ixz="2.25813617645585E-08"
+        iyy="4.60816055084658E-07"
+        iyz="1.93962320189275E-07"
+        izz="2.67104746690367E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/RINGR3.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/RINGR3.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="RING4J" type="revolute">
+     <origin xyz="-0.00556886458401787 0.0104827744734095 -0.023043452466009" rpy="-0.296160838572283 -0.00196246584719336 -0.0162035577982631" />
+     <parent link="RING3" />
+    <child link="RING4" />
+    <axis xyz="0.998473792176334 -0.00152169999888338 0.0552066188615389" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="RING4">
+    <inertial>
+      <origin xyz="0.00970712140333464 0.00517772032091524 -0.0109303216897119" rpy="0 0 0" />
+      <mass value="0.00508790326185953" />
+      <inertia
+        ixx="3.21881267515535E-07"
+        ixy="-5.57066657488561E-09"
+        ixz="9.52597980541941E-09"
+        iyy="2.3260382657139E-07"
+        iyz="1.10457302895767E-07"
+        izz="1.3560792664375E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/RINGR4.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/RINGR4.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="PINKY1J" type="revolute">
+     <origin xyz="-0.0518281889899361 -0.119247995974902 -0.0727105177227392" rpy="-1.81544230738892 0.0275567464709469 -1.57079632679482" />
+     <parent link="HAND1" />
+    <child link="PINKY1" />
+    <axis xyz="1 0 0" />
+    <limit effort="87" lower="-0.2618" upper="0.2618" velocity="1.57" />
+  </joint>
+
+  <link name="PINKY1">
+    <inertial>
+      <origin xyz="0.00927219023129955 -0.00736255739833702 0.00263444925595474" rpy="0 0 0" />
+      <mass value="0.00539210539266023" />
+      <inertia
+        ixx="6.96333288665564E-07"
+        ixy="-1.19950840661636E-07"
+        ixz="9.67417124456819E-09"
+        iyy="3.98913790344658E-07"
+        iyz="4.02840815878438E-08"
+        izz="7.2003801555904E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/PINKYR1.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/PINKYR1.obj" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="PINKY2J" type="revolute">
+     <origin xyz="0.00399999999999501 0.00599999999999645 0" rpy="-0.0275567464693832 -1.51554062663406 1.30952660485533" />
+     <parent link="PINKY1" />
+    <child link="PINKY2" />
+    <axis xyz="0.998473792176333 -0.00152169999886363 0.0552066188615672" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+  
+  <link name="PINKY2">
+    <inertial>
+      <origin xyz="0.00425508070057012 0.00205282977580634 -0.0194081061024169" rpy="0 0 0" />
+      <mass value="0.00907790418420795" />
+      <inertia
+        ixx="1.7806100176559E-06"
+        ixy="-1.64946694778048E-08"
+        ixz="6.15766494673663E-08"
+        iyy="1.52472327311298E-06"
+        iyz="4.7927730810919E-07"
+        izz="4.23937136725609E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/PINKYR2.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/PINKYR2.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="PINKY3J" type="revolute">
+     <origin xyz="0.00245425253091608 0.0131001962099048 -0.0440268270918592" rpy="-0.143223649730263 -0.000348596102987434 -0.00790757275869532" />
+     <parent link="PINKY2" />
+    <child link="PINKY3" />
+    <axis xyz="0.998473792176333 -0.00152169999887945 0.0552066188615735" />
+    <limit effort="87" lower="0.0" upper="2.0944" velocity="1.57" />
+  </joint>
+
+  <link name="PINKY3">
+    <inertial>
+      <origin xyz="0.00161040672709278 -0.000310067383871293 -0.0103086433971734" rpy="0 0 0" />
+      <mass value="0.00559373054797803" />
+      <inertia
+        ixx="6.44561600243224E-07"
+        ixy="-7.68953487890685E-09"
+        ixz="2.25813579725662E-08"
+        iyy="4.60816054718861E-07"
+        iyz="1.93962393053197E-07"
+        izz="2.67104728639613E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/PINKYR3.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/PINKYR3.obj" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="PINKY4J" type="revolute">
+     <origin xyz="0.0113658846297238 0.0104569654771134 -0.0221071131715794" rpy="-0.296160838572292 -0.00196246584718176 -0.0162035577982563" />
+     <parent link="PINKY3" />
+    <child link="PINKY4" />
+    <axis xyz="0.998473792176334 -0.00152169999887439 0.0552066188615554" />
+    <limit effort="87" lower="0.0" upper="1.5708" velocity="1.57" />
+  </joint>
+
+  <link name="PINKY4">
+    <inertial>
+      <origin xyz="-0.00762701743341609 0.00520413978176515 -0.0118887425236366" rpy="0 0 0" />
+      <mass value="0.00508790204089522" />
+      <inertia
+        ixx="3.21881097290298E-07"
+        ixy="-5.57071131969144E-09"
+        ixz="9.52590589204744E-09"
+        iyy="2.32603822627408E-07"
+        iyz="1.10457333019938E-07"
+        izz="1.35608008533503E-07" />
+    </inertial>
+    <visual>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/visual/PINKYR4.dae" />
+      </geometry>
+      <material >
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>      
+      <geometry>
+        <mesh filename="package://franka_hand_description/meshes/collision/PINKYR4.obj" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="PALM1J" type="fixed">
+        <parent link="HAND1"/>
+        <child link="PALM1"/>        
+        <origin rpy="0 0 0" xyz="0 -0.10 -0.05"/>
+  </joint>  
+  <link name="PALM1"/>
+  
+</robot>
+
+

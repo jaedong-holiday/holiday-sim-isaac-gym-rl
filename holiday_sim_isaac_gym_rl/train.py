@@ -46,9 +46,6 @@ def preprocess_train_config(cfg, config_dict):
 
     train_cfg['device'] = cfg.rl_device
 
-    # train_cfg['population_based_training'] = False
-    # train_cfg['pbt_idx'] = None
-
     train_cfg['full_experiment_name'] = cfg.get('full_experiment_name')
 
     print(f'Using rl_device: {cfg.rl_device}')
@@ -68,10 +65,9 @@ def preprocess_train_config(cfg, config_dict):
     return config_dict
 
 
-# @hydra.main(version_base="1.1", config_name="config", config_path="./cfg")
-# def launch_rlg_hydra(cfg: DictConfig):
-def launch_rlg_hydra():
-    
+@hydra.main(version_base="1.1", config_name="config", config_path="./cfg")
+def launch_rlg_hydra(cfg: DictConfig):
+
     import logging
     import os
     from datetime import datetime
@@ -94,15 +90,14 @@ def launch_rlg_hydra():
 
 
     time_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    # run_name = f"{cfg.wandb_name}_{time_str}"
-    run_name = f"tmp_name_{time_str}"
+    run_name = f"{cfg.wandb_name}_{time_str}"
 
     # ensure checkpoints can be specified as relative paths
-    # if cfg.checkpoint:
-    #     cfg.checkpoint = to_absolute_path(cfg.checkpoint)
+    if cfg.checkpoint:
+        cfg.checkpoint = to_absolute_path(cfg.checkpoint)
 
-    # cfg_dict = omegaconf_to_dict(cfg)
-    # print_dict(cfg_dict)
+    cfg_dict = omegaconf_to_dict(cfg)
+    print_dict(cfg_dict)
 
     # set numpy formatting for printing only
     set_np_formatting()
@@ -111,45 +106,43 @@ def launch_rlg_hydra():
     global_rank = int(os.getenv("RANK", "0"))
 
     # sets seed. if seed is -1 will pick a random one
-    # cfg.seed = set_seed(cfg.seed, torch_deterministic=cfg.torch_deterministic, rank=global_rank)
+    cfg.seed = set_seed(cfg.seed, torch_deterministic=cfg.torch_deterministic, rank=global_rank)
 
-    def create_isaacgym_env():
-    # def create_isaacgym_env(**kwargs):
-        # envs = holiday_sim_isaac_gym_rl.make(
-        #     cfg.seed, 
-        #     cfg.task_name, 
-        #     cfg.task.env.numEnvs, 
-        #     cfg.sim_device,
-        #     cfg.rl_device,
-        #     cfg.graphics_device_id,
-        #     cfg.headless,
-        #     cfg.multi_gpu,
-        #     cfg.capture_video,
-        #     cfg.force_render,
-        #     cfg,
-        #     **kwargs,
-        # )
-        envs, cfg = holiday_sim_isaac_gym_rl.make()        
-        # if cfg.capture_video:
-        #     envs.is_vector_env = True
-        #     envs = gym.wrappers.RecordVideo(
-        #         envs,
-        #         f"videos/{run_name}",
-        #         step_trigger=lambda step: step % cfg.capture_video_freq == 0,
-        #         video_length=cfg.capture_video_len,
-        #     )
-        return envs, cfg
-    
-    envs, cfg = create_isaacgym_env()    
+    def create_isaacgym_env(**kwargs):
+        envs = holiday_sim_isaac_gym_rl.make(
+            cfg.seed, 
+            cfg.task_name, 
+            cfg.task.env.numEnvs, 
+            cfg.sim_device,
+            cfg.rl_device,
+            cfg.graphics_device_id,
+            cfg.headless,
+            cfg.multi_gpu,
+            cfg.capture_video,
+            cfg.force_render,
+            cfg,
+            **kwargs,
+        )
+        if cfg.capture_video:
+            envs.is_vector_env = True
+            envs = gym.wrappers.RecordVideo(
+                envs,
+                f"videos/{run_name}",
+                step_trigger=lambda step: step % cfg.capture_video_freq == 0,
+                video_length=cfg.capture_video_len,
+            )
+        return envs
+
     env_configurations.register('rlgpu', {
         'vecenv_type': 'RLGPU',
-        'env_creator': envs,
-        # 'env_creator': lambda **kwargs: create_isaacgym_env(**kwargs),
+        'env_creator': lambda **kwargs: create_isaacgym_env(**kwargs),
     })
-    
-    ige_env_cls = isaacgym_task_map["InsertHolly"]
+   
+    ige_env_cls = isaacgym_task_map[cfg.task_name]
     dict_cls = ige_env_cls.dict_obs_cls if hasattr(ige_env_cls, 'dict_obs_cls') and ige_env_cls.dict_obs_cls else False
-    
+
+    print("========================")
+    print("cls : ", dict_cls)
     if dict_cls:        
         obs_spec = {}
         actor_net_cfg = cfg.train.params.network
@@ -162,7 +155,6 @@ def launch_rlg_hydra():
     else:
         vecenv.register('RLGPU', lambda config_name, num_actors, **kwargs: RLGPUEnv(config_name, num_actors, **kwargs))
 
-    print("cfg train : ", cfg.train)
     rlg_config_dict = omegaconf_to_dict(cfg.train)
     rlg_config_dict = preprocess_train_config(cfg, rlg_config_dict)
 
@@ -178,11 +170,7 @@ def launch_rlg_hydra():
     # register new AMP network builder and agent
     def build_runner(algo_observer):
         runner = Runner(algo_observer)
-        runner.algo_factory.register_builder('amp_continuous', lambda **kwargs : amp_continuous.AMPAgent(**kwargs))
-        # runner.player_factory.register_builder('amp_continuous', lambda **kwargs : amp_players.AMPPlayerContinuous(**kwargs))
-        # model_builder.register_model('continuous_amp', lambda network, **kwargs : amp_models.ModelAMPContinuous(network))
-        # model_builder.register_network('amp', lambda **kwargs : amp_network_builder.AMPBuilder())
-
+        
         return runner
 
     # convert CLI arguments into dictionary
@@ -207,5 +195,6 @@ def launch_rlg_hydra():
         'sigma': cfg.sigma if cfg.sigma != '' else None
     })
 
-if __name__ == "__main__":    
+
+if __name__ == "__main__":
     launch_rlg_hydra()

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<robot name="holi_bottom_04">
+
+  <link name="holi_bottom_04">
+        
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://holi/meshes/visual/holi_bottom_08.obj"/>
+      </geometry>            
+    </visual>
+
+    <!-- foot -->
+    <collision>
+      <origin xyz="0.0 -0.01 0.0015"/>
+      <geometry>
+        <box size="0.03 0.01 0.003"/>
+      </geometry>      
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+
+    <!-- foot -->
+    <collision>
+      <origin xyz="0.0 0.01 0.0015"/>
+      <geometry>
+        <box size="0.03 0.01 0.003"/>
+      </geometry>      
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+   
+    <!-- leg -->
+    <collision>
+      <origin xyz="0.0 -0.01 0.009"/>
+      <geometry>
+        <box size="0.02 0.005 0.012"/>
+      </geometry>        
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    
+    <!-- leg -->
+    <collision>
+      <origin xyz="0.0  0.01 0.009"/>
+      <geometry>
+        <box size="0.02 0.005 0.012"/>
+      </geometry>        
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+
+    <!-- body -->
+    <collision>
+      <origin xyz="0.0 0.0 0.02"/>
+      <geometry>
+        <box size="0.05 0.05 0.01"/>
+      </geometry>      
+    </collision>    
+    <inertial>
+      <mass value="4"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>  
+    
+    <!-- body hole 1 -->
+    <collision>
+      <origin xyz="0.01885 -0.00615 0.0325"/>
+      <geometry>
+        <box size="0.0123   0.0377 0.015"/>
+      </geometry>      
+    </collision>    
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial> 
+    
+    <!-- body hole 2 -->
+    <collision>
+      <origin xyz="-0.01885 0.00615 0.0325"/>
+      <geometry>
+        <box size="0.0123 0.0377 0.015"/>
+      </geometry>      
+    </collision>    
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+    
+    <!-- body hole 3 -->
+    <collision>
+      <origin xyz="0.00615 0.01885 0.0325"/>
+      <geometry>
+        <box size="0.0377 0.0123 0.015"/>
+      </geometry>      
+    </collision>    
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+      
+    <!-- body hole 4 -->
+    <collision>
+      <origin xyz="-0.00615 -0.01885 0.0325"/>
+      <geometry>
+        <box size="0.0377 0.0123 0.015"/>
+      </geometry>      
+    </collision>    
+    <inertial>
+      <mass value="1"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+    </inertial>
+   
+  </link>
+  
+</robot>

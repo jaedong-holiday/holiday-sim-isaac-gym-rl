@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="holi_top">
+
+  <link name="holi_top">
+        
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0 1.57079632679"/>
+      <geometry>
+        <mesh filename="package://holi/meshes/visual/holi_top.obj"/>
+      </geometry>   
+    </visual>
+
+    <!-- head -->
+    <collision>
+      <origin xyz="0.0 0.0 0.027"/>
+      <geometry>
+        <box size="0.05 0.05 0.025"/>
+      </geometry>    
+    </collision>
+    <inertial>
+      <mass value="0.02"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.02" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.02"/>
+    </inertial>
+
+    <!-- head plus 1 -->
+    <collision>
+      <origin xyz="0.0 0.0 0.00725" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.010 0.025 0.0145"/>
+      </geometry>      
+    </collision>
+    <inertial>
+      <mass value="0.003"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.003" ixy="0.0" ixz="0.0" iyy="0.003" iyz="0.0" izz="0.003"/>
+    </inertial>
+
+    <!-- head plus 2 -->
+    <collision>
+      <origin xyz="0.00875 0.0 0.00725" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0075 0.01 0.0145"/>
+      </geometry>      
+    </collision>
+    <inertial>
+      <mass value="0.003"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.003" ixy="0.0" ixz="0.0" iyy="0.003" iyz="0.0" izz="0.003"/>
+    </inertial>
+
+    <!-- head plus 3 -->
+    <collision>
+      <origin xyz="-0.00875 0.0 0.00725" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0075 0.01 0.0145"/>
+      </geometry>      
+    </collision>
+    <inertial>
+      <mass value="0.003"/>
+      <friction value="1.0"/>
+      <inertia ixx="0.003" ixy="0.0" ixz="0.0" iyy="0.003" iyz="0.0" izz="0.003"/>
+    </inertial>
+
+
+  </link>
+
+</robot>

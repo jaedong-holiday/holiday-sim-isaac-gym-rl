@@ -1,9 +1,0 @@
-sim_id: "insert_holly_v1_sim"
-controller_id: "cartesian_impedance_v1_controller"
-
-
-defaults:
-  - robot: default
-  - sim : default
-  - controller: default
-  - train: default

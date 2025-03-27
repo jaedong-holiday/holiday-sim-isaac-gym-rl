@@ -8,7 +8,7 @@ setup(
     author="jaedong lee",
     author_email="jaedong.lee@holiday-robotics.com",
     description="",
-    url="https://https://github.com/Holiday-Robot/holiday-sim-isaac-gym-rl",
+    url="https://https://github.com/jaedong-holiday/holiday-sim-isaac-gym-rl",
     python_requires=">=3.8, <3.9",
     entry_points={
         "console_scripts": [
